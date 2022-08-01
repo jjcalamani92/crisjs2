@@ -20,7 +20,7 @@ const Home: FC<Props> = ({ site }) => {
       title='Inicio'
       site={site}
     >
-      <Hero contain={site.route.find(data => data.href === 'home')?.content.body} />
+      <Hero contain={site.route.find(data => data.href === 'home')?.content.body!} />
       <Brand />
     </Layout>
   )
