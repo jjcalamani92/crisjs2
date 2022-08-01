@@ -2,7 +2,7 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
-import { classNames } from '../utils/function'
+import { classNames } from '../../src/utils/function'
 
 export const Dropdowns = () => {
   return (
