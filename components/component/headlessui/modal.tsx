@@ -2,10 +2,8 @@
 import { FC, Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
-import { getSiteDataForm } from '../../utils/functionV2'
 import { FormSite } from '../form/siteForm'
 import { useRouter } from 'next/router';
-import { ISite } from '../../interfaces/site'
 
 interface Props {
   open: boolean

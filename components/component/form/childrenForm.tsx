@@ -34,10 +34,10 @@ import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { useRouter } from 'next/router';
 
 import Swal from 'sweetalert2';
-import { graphQLClientS } from '../../swr/graphQLClient';
-import { ADD_CHILDREN_0, ADD_CHILDREN_1, ADD_CHILDREN_2, CREATE_SITE, UPDATE_CHILDREN_0, UPDATE_CHILDREN_1, UPDATE_CHILDREN_2 } from '../../graphql';
-import { getQuery, getURL } from '../../utils/function';
-import { ChildrenForm, SiteForm } from '../../interfaces/site';
+import { graphQLClientS } from '../../../src/swr/graphQLClient';
+import { ADD_CHILDREN_0, ADD_CHILDREN_1, ADD_CHILDREN_2, CREATE_SITE, UPDATE_CHILDREN_0, UPDATE_CHILDREN_1, UPDATE_CHILDREN_2 } from '../../../src/graphql';
+import { getQuery, getURL } from '../../../src/utils/function';
+import { ChildrenForm, SiteForm } from '../../../src/interfaces/site';
 const { Option } = Select;
 
 const normFile = (e: any) => {

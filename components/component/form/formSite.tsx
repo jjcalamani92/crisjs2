@@ -4,9 +4,7 @@ import { useRouter } from "next/router";
 import { ChangeEvent, FC } from 'react';
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { CREATE_SITE, UPDATE_SITE } from "../../graphql";
-import { ISite, SiteForm } from "../../interfaces/site";
-import { graphQLClientS } from "../../swr/graphQLClient";
+import { SiteForm } from "../../../src/interfaces/site";
 
 interface Props {
   site: SiteForm

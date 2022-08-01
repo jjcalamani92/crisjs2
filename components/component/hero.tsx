@@ -3,8 +3,8 @@ import { FC, Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Main } from './component'
-import { Body } from '../interfaces/site'
 import Image from 'next/image'
+import { Body } from '../../src/interfaces/site'
 
 
 const navigation = [

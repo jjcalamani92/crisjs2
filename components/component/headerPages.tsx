@@ -22,9 +22,9 @@ import {
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Children } from '../interfaces/site';
 import { Icon } from './icon'
 import { Nav } from './nav'
+import { Children } from '../../src/interfaces/site'
 
 
 const solutions = [
