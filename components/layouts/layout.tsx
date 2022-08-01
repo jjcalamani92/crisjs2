@@ -3,15 +3,15 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import { Footer } from "../component/footer";
 import { Header } from "../component/headerPages";
-import { ISite } from "../../src/interfaces/site";
+import { Site } from "../../src/interfaces/site";
 
 interface Layout {
 	title: string;
 	pageDescription?: string;
 	imageFullUrl?: string;
 	children?: React.ReactNode;
-	sites?: ISite[]
-	site: ISite
+	sites?: Site[]
+	site: Site
 }
 
 export const Layout: FC<Layout> = ({
