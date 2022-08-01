@@ -1,8 +1,8 @@
 import { DataNode } from "antd/lib/tree"
-import { Children, ISite } from "../interfaces/site"
+import { Children, Site } from "../interfaces/site"
 
-export const getDataTree = (sitesAll:ISite[]):DataNode[] => {
-  let sites = sitesAll.map((data: ISite) => (
+export const getDataTree = (sitesAll:Site[]):DataNode[] => {
+  let sites = sitesAll.map((data: Site) => (
     {
       title: data.data.title,
       key: `/dashboard/sites/${data._id}`,
