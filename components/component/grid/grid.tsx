@@ -28,7 +28,7 @@ const Card: FC<Card> = ({ data }) => {
   // console.log('card');
   
   return (
-    <div className="shadow-lg p-2 ">
+    <div className="shadow-lg ">
       <Link href={`${asPath}/${data.href}`}>
         <a>
           <div className="w-full bg-white rounded-sm overflow-hidden leading-none">
@@ -40,7 +40,7 @@ const Card: FC<Card> = ({ data }) => {
               objectFit={'cover'}
             />
           </div>
-          <div className="py-2 flex justify-between">
+          <div className="p-2 flex justify-between">
             <h3 className="text-xs md:text-sm text-gray-700">
               {data.title}
             </h3>

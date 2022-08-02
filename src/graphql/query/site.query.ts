@@ -1,5 +1,20 @@
 import { gql } from "graphql-request";
 
+export const SITE_FRAGMENT = gql`
+  fragment siteDetails on Site{
+  }
+`
+export const CHILDREN_FRAGMENT = gql`
+  fragment childrenData on Children{
+    uid
+    name
+    href
+    imageSrc
+    imageAlt
+    description
+  }
+`
+
 export const SITES_ID = gql`
   query SitesAll {
     sitesAll {
@@ -8,40 +23,61 @@ export const SITES_ID = gql`
   }
 `;
 export const CHILDREN_0 = gql`
-  query GetChildrens0($_id:ID!, $input: ChildrenInput!) {
-    getChildrens0(_id:$_id, input: $input) {
-			name
-      href
-      imageSrc
+  query GetChildren0($_id:ID!, $input: ChildrenInput!) {
+    getChildren0(_id:$_id, input: $input) {
+			...childrenData
     }
   }
+  ${CHILDREN_FRAGMENT}
 `;
 export const CHILDREN_1 = gql`
-  query GetChildrens1($_id:ID!, $input: ChildrenInput!) {
-    getChildrens1(_id:$_id, input: $input) {
-			name
-      href
-      imageSrc
+  query GetChildren1($_id:ID!, $input: ChildrenInput!) {
+    getChildren1(_id:$_id, input: $input) {
+			...childrenData
     }
   }
+  ${CHILDREN_FRAGMENT}
 `;
 export const CHILDREN_2 = gql`
+  query GetChildren2($_id:ID!, $input: ChildrenInput!) {
+    getChildren2(_id:$_id, input: $input) {
+			...childrenData
+    }
+  }
+  ${CHILDREN_FRAGMENT}
+`;
+export const CHILDRENS_0 = gql`
+  query GetChildrens0($_id:ID!, $input: ChildrenInput!) {
+    getChildrens0(_id:$_id, input: $input) {
+			...childrenData
+    }
+  }
+  ${CHILDREN_FRAGMENT}
+`;
+export const CHILDRENS_1 = gql`
+  query GetChildrens1($_id:ID!, $input: ChildrenInput!) {
+    getChildrens1(_id:$_id, input: $input) {
+			...childrenData
+    }
+  }
+  ${CHILDREN_FRAGMENT}
+`;
+export const CHILDRENS_2 = gql`
   query GetChildrens2($_id:ID!, $input: ChildrenInput!) {
     getChildrens2(_id:$_id, input: $input) {
-			name
-      href
-      imageSrc
+			...childrenData
     }
   }
+  ${CHILDREN_FRAGMENT}
+
 `;
-export const CHILDREN_3 = gql`
+export const CHILDRENS_3 = gql`
   query GetChildrens3($_id:ID!, $input: ChildrenInput!) {
     getChildrens3(_id:$_id, input: $input) {
-			name
-      href
-      imageSrc
+      ...childrenData
     }
   }
+  ${CHILDREN_FRAGMENT}
 `;
 export const SITES = gql`
   query SitesAll {
@@ -134,6 +170,7 @@ export const SITE = gql`
         description
       }
       route {
+        uid
         name
         href
         description
@@ -149,6 +186,7 @@ export const SITE = gql`
           }
         }
         children {
+          uid
           name
           href
           description

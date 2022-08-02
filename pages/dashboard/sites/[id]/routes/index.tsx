@@ -13,7 +13,7 @@ import { HeadingDashboard } from '../../../../../components/component/component'
 import { GridSkeleton } from '../../../../../components/component/grid/gridSkeleton'
 import { GridSite } from '../../../../../components/component/grid/gridSite'
 import { GridChildren } from '../../../../../components/component/grid/gridPages'
-import { CHILDREN_0 } from '../../../../../src/graphql/query/site.query';
+import { CHILDRENS_0, CHILDREN_0 } from '../../../../../src/graphql/query/site.query';
 
 interface Props {
   site: Site
@@ -22,7 +22,7 @@ interface Props {
 
 const Routes: FC<Props> = ({ site, sites }) => {
   const { query } = useRouter()
-  const { data, isValidating, error } = useSWR([CHILDREN_0, {_id: query.id, input: {}}])
+  const { data, isValidating, error } = useSWR([CHILDRENS_0, {_id: query.id, input: {}}])
   console.log(query.id);
   
   return (

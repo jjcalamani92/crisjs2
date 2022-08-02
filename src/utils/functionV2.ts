@@ -243,3 +243,6 @@ export const getChildren2DataForm = (
   }
   return data;
 };
+export const getPathsByChildren0 = (sites: Site[]) => {
+  return sites.map(data => data.route.map(data0 => ({id: data._id, children0: data0.href}) )).flat(1).map(data => ({params: data}))
+}
