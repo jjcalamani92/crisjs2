@@ -26,24 +26,33 @@ interface Props {
 
 const Children1: FC<Props> = ({ site, sites, children }) => {
   const { query } = useRouter()
-  const { data, isValidating, error } = useSWR([CHILDRENS_2, {_id: query.id, input: {children_uid_0: query.children0, children_uid_1: query.children1}}])
-  
+  const { data, isValidating, error } = useSWR([CHILDRENS_2, { _id: query.id, input: { children_uid_0: query.children0, children_uid_1: query.children1 } }])
+
   // console.log(children);
-  
+
   return (
     <Layout
       title='Dashboard'
       site={site}
     >
       <Dashboard tree={getDataTree(sites)} >
-        <HeadingDashboard title='Pages' />
-        {isValidating
-          ?
-          <GridSkeleton />
-          :
-          <GridChildren data={data.getChildrens2} />
-          // <GridSkeleton />
+        {
+          query.children1 === 'new'
+            ?
+            null
+            :
+            <>
+              <HeadingDashboard title='Pages' />
+              {isValidating
+                ?
+                <GridSkeleton />
+                :
+                <GridChildren data={data?.getChildrens2} />
+                // <GridSkeleton />
+              }
+            </>
         }
+
         <HeadingForm title="Page" />
         <FormChildren data={children} />
 
@@ -61,8 +70,8 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
   };
 }
 
-export const getStaticProps: GetStaticProps = async ({params}) => {
-  const { id = '', children0 = '', children1 = '' } = params as {id: string, children0: string, children1: string}
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { id = '', children0 = '', children1 = '' } = params as { id: string, children0: string, children1: string }
 
   const { site } = await graphQLClientS.request(SITE, { _id: process.env.API_SITE })
   const { sitesAll } = await graphQLClientS.request(SITES)
@@ -75,7 +84,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
       imageAlt: "image description",
     }
   } else {
-    const data = await graphQLClientS.request(CHILDREN_1, { _id: id, input:{children_uid_0: children0, children_uid_1: children1} })
+    const data = await graphQLClientS.request(CHILDREN_1, { _id: id, input: { children_uid_0: children0, children_uid_1: children1 } })
     children = {
       uid: data!.getChildren1.uid,
       name: data!.getChildren1.name,
