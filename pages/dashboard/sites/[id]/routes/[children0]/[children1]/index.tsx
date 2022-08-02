@@ -37,7 +37,7 @@ const Children1: FC<Props> = ({ site, sites, children }) => {
     >
       <Dashboard tree={getDataTree(sites)} >
         <HeadingDashboard title='Pages' />
-        {!data
+        {isValidating
           ?
           <GridSkeleton />
           :
@@ -70,9 +70,9 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
   if (children1 === 'new') {
     children = {
       name: "",
-      description: "",
+      description: "description",
       imageSrc: "https://res.cloudinary.com/dvcyhn0lj/image/upload/v1655217461/14.1_no-image.jpg_gkwtld.jpg",
-      imageAlt: "",
+      imageAlt: "image description",
     }
   } else {
     const data = await graphQLClientS.request(CHILDREN_1, { _id: id, input:{children_uid_0: children0, children_uid_1: children1} })

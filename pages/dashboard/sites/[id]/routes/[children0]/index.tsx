@@ -39,7 +39,7 @@ const Children0: FC<Props> = ({ site, sites, children }) => {
     >
       <Dashboard tree={getDataTree(sites)} >
         <HeadingDashboard title='Pages' />
-        {!data
+        {isValidating
           ?
           <GridSkeleton />
           :
