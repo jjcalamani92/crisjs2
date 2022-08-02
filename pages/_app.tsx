@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         fetcher: (query: string, variables) =>
           request(`${process.env.APIS_URL}/graphql`, query, variables),
           revalidateOnFocus: false,
-          revalidateIfStale: false,
+          // revalidateIfStale: false,
       }
       }>
       <Component {...pageProps} />
