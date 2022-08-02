@@ -32,7 +32,7 @@ const Routes: FC<Props> = ({ site, sites }) => {
     >
       <Dashboard tree={getDataTree(sites)} >
         <HeadingDashboard title='Pages' />
-        {!data
+        {isValidating
           ?
           <GridSkeleton />
           :

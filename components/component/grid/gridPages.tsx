@@ -3,7 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FC, useState } from "react";
 import Swal from "sweetalert2";
-import { DELETE_CHILDREN_0, DELETE_CHILDREN_1, DELETE_CHILDREN_2, DELETE_CHILDREN_3, DELETE_CHILDREN_4, DELETE_CHILDREN_5 } from "../../../src/graphql";
+import { mutate } from "swr";
+import { CHILDRENS_0, DELETE_CHILDREN_0, DELETE_CHILDREN_1, DELETE_CHILDREN_2, DELETE_CHILDREN_3, DELETE_CHILDREN_4, DELETE_CHILDREN_5 } from "../../../src/graphql";
 import { Children } from "../../../src/interfaces/site";
 import { graphQLClientS } from "../../../src/swr/graphQLClient";
 import { getQuery } from "../../../src/utils/function";
@@ -52,6 +53,7 @@ export const CardChildren: FC<CardChildren> = ({ data }) => {
         if (url.length === 4) {
           await graphQLClientS.request(DELETE_CHILDREN_0, { _id: url[2], input: { 'children_uid_0': uid } })
           push(`${asPath}`)
+          mutate([CHILDRENS_0, {_id: query.id, input: {}}])
         } else if (url.length === 5) {
           await graphQLClientS.request(DELETE_CHILDREN_1, { _id: url[2], input: { 'children_uid_0': url[4], 'children_uid_1': uid } })
           push(`${asPath}`)
