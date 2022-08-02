@@ -25,8 +25,8 @@ interface Props {
 
 const Children0: FC<Props> = ({ site, sites, children }) => {
   const { query } = useRouter()
-  console.log(getPathsByChildren0(sites));
-  console.log(query);
+  // console.log(getPathsByChildren0(sites));
+  // console.log(query);
   
   
   const { data, isValidating, error } = useSWR([CHILDRENS_1, {_id: query.id, input: {children_uid_0: query.children0}}])
@@ -58,7 +58,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
   // const paths = getPathsByChildren0(sitesAll)
   // const paths = sitesAll.map((data: { _id: string }) => ({ params: { id: data._id } }))
   return {
-    paths:[{ params: {id: '', children0: '' } }],
+    paths: getPathsByChildren0(sitesAll),
     fallback: 'blocking'
   };
 }

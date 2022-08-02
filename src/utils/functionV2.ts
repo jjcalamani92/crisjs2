@@ -246,3 +246,9 @@ export const getChildren2DataForm = (
 export const getPathsByChildren0 = (sites: Site[]) => {
   return sites.map(data => data.route.map(data0 => ({id: data._id, children0: data0.href}) )).flat(1).map(data => ({params: data}))
 }
+export const getPathsByChildren1 = (sites: Site[]) => {
+  return sites.map(data => data.route.map(data0 => data0.children.map(data1 => ({id: data._id, children0: data0.href, children1: data1.href}) ))).flat(2).map(data => ({params: data}))
+}
+export const getPathsByChildren2 = (sites: Site[]) => {
+  return sites.map(data => data.route.map(data0 => data0.children.map(data1 => data1.children.map(data2 => ({id: data._id, children0: data0.href, children1: data1.href, children2: data2.href}) )))).flat(3).map(data => ({params: data}))
+}

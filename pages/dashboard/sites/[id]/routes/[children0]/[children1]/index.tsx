@@ -15,6 +15,7 @@ import { GridSite } from '../../../../../../../components/component/grid/gridSit
 import { GridChildren } from '../../../../../../../components/component/grid/gridPages'
 import { CHILDRENS_0, CHILDRENS_1, CHILDRENS_2, CHILDREN_1 } from '../../../../../../../src/graphql/query/site.query';
 import { FormChildren } from '../../../../../../../components/component/form/childrenForm'
+import { getPathsByChildren0, getPathsByChildren1 } from '../../../../../../../src/utils/functionV2'
 
 interface Props {
   site: Site
@@ -52,10 +53,10 @@ const Children1: FC<Props> = ({ site, sites, children }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  const { sitesAll } = await graphQLClientS.request(SITES_ID)
+  const { sitesAll } = await graphQLClientS.request(SITES)
   // const paths = sitesAll.map((data: { _id: string }) => ({ params: { id: data._id } }))
   return {
-    paths:[{ params: {id: '', children0: '', children1: '' } }],
+    paths: getPathsByChildren1(sitesAll),
     fallback: 'blocking'
   };
 }

@@ -15,6 +15,7 @@ import { GridSite } from '../../../../../../../../components/component/grid/grid
 import { GridChildren } from '../../../../../../../../components/component/grid/gridPages'
 import { CHILDRENS_2, CHILDRENS_3, CHILDREN_2 } from '../../../../../../../../src/graphql/query/site.query';
 import { FormChildren } from '../../../../../../../../components/component/form/childrenForm'
+import { getPathsByChildren2 } from '../../../../../../../../src/utils/functionV2'
 
 interface Props {
   site: Site
@@ -25,7 +26,6 @@ interface Props {
 const Children2: FC<Props> = ({ site, sites, children }) => {
   const { query } = useRouter()
   const { data, isValidating, error } = useSWR([CHILDRENS_3, {_id: query.id, input: {children_uid_0: query.children0, children_uid_1: query.children1, children_uid_2: query.children2}}])
-  console.log(children);
   
   
   return (
@@ -50,10 +50,10 @@ const Children2: FC<Props> = ({ site, sites, children }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  const { sitesAll } = await graphQLClientS.request(SITES_ID)
+  const { sitesAll } = await graphQLClientS.request(SITES)
   // const paths = sitesAll.map((data: { _id: string }) => ({ params: { id: data._id } }))
   return {
-    paths:[{ params: {id: '', children0: '', children1: '', children2: '' } }],
+    paths: getPathsByChildren2(sitesAll),
     fallback: 'blocking'
   };
 }
