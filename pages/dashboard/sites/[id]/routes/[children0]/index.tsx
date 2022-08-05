@@ -11,9 +11,8 @@ import { getDataTree } from '../../../../../../src/utils/getDataTree'
 import useSWR from 'swr'
 import { HeadingDashboard, HeadingForm } from '../../../../../../components/component/component'
 import { GridSkeleton } from '../../../../../../components/component/grid/gridSkeleton'
-import { GridSite } from '../../../../../../components/component/grid/gridSite'
 import { GridChildren } from '../../../../../../components/component/grid/gridPages'
-import { CHILDRENS_0, CHILDRENS_1, CHILDREN_0 } from '../../../../../../src/graphql/query/site.query';
+import { CHILDRENS_1, CHILDREN_0 } from '../../../../../../src/graphql/query/site.query';
 import { FormChildren } from '../../../../../../components/component/form/childrenForm'
 import { getPathsByChildren0 } from '../../../../../../src/utils/functionV2'
 
@@ -25,10 +24,7 @@ interface Props {
 
 const Children0: FC<Props> = ({ site, sites, children }) => {
   const { query } = useRouter()
-
-
   const { data, isValidating, error } = useSWR([CHILDRENS_1, { _id: query.id, input: { children_uid_0: query.children0 } }])
-
   return (
     <Layout
       title='Dashboard'

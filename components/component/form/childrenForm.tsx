@@ -96,6 +96,7 @@ export const FormChildren: FC<Props> = ({ data, routes }) => {
 
       await graphQLClientS.request(ADD_CHILDREN_1, { _id: url[2], input: data })
       push(getURL(asPath))
+
     } else if (url.length === 5 && data.uid) {
       const data = { ...values, imageSrc: "https://res.cloudinary.com/dvcyhn0lj/image/upload/v1655217461/14.1_no-image.jpg_gkwtld.jpg", children_uid_0: url[4], }
       await graphQLClientS.request(UPDATE_CHILDREN_0, { _id: url[2], input: data }),
@@ -106,6 +107,7 @@ export const FormChildren: FC<Props> = ({ data, routes }) => {
           showConfirmButton: false,
           timer: 1500
         })
+        
       push(getURL(asPath))
     } else if (url.length === 5) {
       const data = { ...values, imageSrc: "https://res.cloudinary.com/dvcyhn0lj/image/upload/v1655217461/14.1_no-image.jpg_gkwtld.jpg" }

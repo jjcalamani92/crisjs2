@@ -19,8 +19,10 @@ const callsToAction = [
 ]
 
 export const Nav:FC<Nav> = ({data}) => {
+  // console.log(data);
+  
   const services = data.find((data: { href: string }) => data.href === 'services')
-  const more = data.find((data: { href: string }) => data.href === 'mas')
+  const more = data.find((data: { href: string }) => data.href === 'more')
   const pages = data.filter((data: { children: Children[] }) => data.children?.length === 0)
   return (
     <Popover.Group as="nav" className="hidden md:flex space-x-10  z-20">
@@ -61,7 +63,7 @@ export const Nav:FC<Nav> = ({data}) => {
                         href={item.href}
                         className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                       >
-                        <Icon icon={`${item.icon}`} />
+                        <Icon icon={item.icon}/>
                         <div className="ml-4">
                           <p className="text-base font-medium text-gray-900">{item.name}</p>
                           <p className="mt-1 text-sm text-gray-500">{item.description}</p>

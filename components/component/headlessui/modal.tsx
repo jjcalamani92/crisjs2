@@ -1,19 +1,32 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { FC, Fragment, useRef, useState } from 'react'
+import { FC, Fragment, useContext, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 import { FormSite } from '../form/siteForm'
 import { useRouter } from 'next/router';
+import { FormChildren } from '../form/childrenForm';
+import { FormSection } from '../form/formSection';
+import { UiContext } from '../../../src/context/ui';
 
 interface Props {
-  open: boolean
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  children: React.ReactNode;
+  href: string
 }
 
-export const ModalH:FC<Props> = ({open, setOpen, children}) => {
-  const { asPath } = useRouter()
+const data = {
+  name: "",
+  imageSrc:
+    "https://res.cloudinary.com/dvcyhn0lj/image/upload/v1655217461/14.1_no-image.jpg_gkwtld.jpg",
+  imageAlt: "image description",
+  description: "description",
 
+}
+
+export const ModalH: FC<Props> = ({ href }) => {
+  const { asPath, query } = useRouter()
+  const {isModalOpen, toggleSideSearch, toggleSideModal } = useContext(UiContext)
+  const [open, setOpen] = useState(isModalOpen)
+  console.log(isModalOpen);
+  
   const cancelButtonRef = useRef(null)
 
   return (
@@ -49,20 +62,23 @@ export const ModalH:FC<Props> = ({open, setOpen, children}) => {
                       <ExclamationIcon className="h-6 w-6 text-orange-600" aria-hidden="true" />
                     </div> */}
                     <div className="mt-3 text-center sm:mt-0 sm:text-left">
-                      <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
-                        Actualizar datos del sitio
-                      </Dialog.Title>
-                      {children}
-                      {/* <div className="mt-2">
-                        <p className="text-sm text-gray-500">
-                          Are you sure you want to deactivate your account? All of your data will be permanently
-                          removed. This action cannot be undone.
-                        </p>
-                      </div> */}
+                      {
+                        query.id && href === 'new'
+                          ?
+                          <>
+                            <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900 mb-3">
+                              Updated Data
+                            </Dialog.Title>
+                            <FormSection section={data} />
+                          </>
+                          :
+                          <h1>hola mundo</h1>
+                      }
+
                     </div>
                   </div>
                 </div>
-                <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                {/* <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                   <button
                     type="button"
                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-orange-600 text-base font-medium text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 sm:ml-3 sm:w-auto sm:text-sm"
@@ -78,7 +94,7 @@ export const ModalH:FC<Props> = ({open, setOpen, children}) => {
                   >
                     Cancel
                   </button>
-                </div>
+                </div> */}
               </Dialog.Panel>
             </Transition.Child>
           </div>

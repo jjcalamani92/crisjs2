@@ -191,6 +191,7 @@ export const SITE = gql`
           href
           description
           imageSrc
+          icon
           imageAlt
           children {
             name

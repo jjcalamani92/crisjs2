@@ -2,23 +2,36 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { ChangeEvent, FC } from 'react';
-import { useForm } from "react-hook-form";
+import { Path, useForm, UseFormRegister } from "react-hook-form";
 import Swal from "sweetalert2";
 import { SiteForm } from "../../../src/interfaces/site";
 
 interface Props {
-  site: SiteForm
+  data: SiteForm
   url?: string
 }
 
-export const FormSite: FC<Props> = ({ site, url }) => {
+type InputProps = {
+  label: Path<SiteForm>;
+  register: UseFormRegister<SiteForm>;
+  required: boolean;
+};
+
+const Input = ({ label, register, required }: InputProps) => (
+  <>
+    <label>{label}</label>
+    <input {...register(label, { required })} />
+  </>
+);
+
+export const FormSite2: FC<Props> = ({ data, url }) => {
   // console.log(site);
   
   const {replace, push} = useRouter()
 
 
   const { register, handleSubmit, formState: { errors }, getValues, setValue, watch } = useForm<SiteForm>({
-    defaultValues: { ...site, type:site.type, client: site.client}
+    defaultValues: { ...data}
   })
 
   const onSubmit = async (form: SiteForm) => {
@@ -268,7 +281,7 @@ export const FormSite: FC<Props> = ({ site, url }) => {
                       type="submit"
                       className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-xs md:text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                     >
-                      { site._id  ? "Actualizar" : "Crear"}
+                      { data._id  ? "Actualizar" : "Crear"}
                     </button>
                   </div>
                 </div>

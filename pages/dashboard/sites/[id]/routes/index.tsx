@@ -9,7 +9,7 @@ import { Site } from '../../../../../src/interfaces/site'
 import { Dashboard } from '../../../../../components/layouts/dashboard'
 import { getDataTree } from '../../../../../src/utils/getDataTree'
 import useSWR from 'swr'
-import { HeadingDashboard } from '../../../../../components/component/component'
+import { HeadingDashboard, HeadingDashboard2 } from '../../../../../components/component/component'
 import { GridSkeleton } from '../../../../../components/component/grid/gridSkeleton'
 import { GridSite } from '../../../../../components/component/grid/gridSite'
 import { GridChildren } from '../../../../../components/component/grid/gridPages'
@@ -23,7 +23,7 @@ interface Props {
 const Routes: FC<Props> = ({ site, sites }) => {
   const { query } = useRouter()
   const { data, isValidating, error } = useSWR([CHILDRENS_0, {_id: query.id, input: {}}])
-  console.log(query.id);
+  // console.log(query.id);
   
   return (
     <Layout
@@ -32,12 +32,12 @@ const Routes: FC<Props> = ({ site, sites }) => {
     >
       <Dashboard tree={getDataTree(sites)} >
         <HeadingDashboard title='Pages' />
+        <HeadingDashboard2 title='Pages' />
         {isValidating
           ?
           <GridSkeleton />
           :
           <GridChildren data={data.getChildrens0} />
-          // <GridSkeleton />
         }
       </Dashboard>
     </Layout>

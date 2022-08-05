@@ -8,12 +8,11 @@ import { SITE, SITES, SITES_ID } from '../../../../src/graphql'
 import { Site, SiteForm } from '../../../../src/interfaces/site'
 import { Dashboard } from '../../../../components/layouts/dashboard'
 import { getDataTree } from '../../../../src/utils/getDataTree'
-import useSWR from 'swr'
 import { HeadingDashboard, HeadingForm } from '../../../../components/component/component'
-import { GridSkeleton } from '../../../../components/component/grid/gridSkeleton'
-import { GridSite } from '../../../../components/component/grid/gridSite'
 import { FormSite } from '../../../../components/component/form/siteForm'
 import { Grid } from '../../../../components/component/grid/grid'
+import { FormSite2 } from '../../../../components/component/form'
+import { SiteF } from '../../../../components/component/form/site'
 
 interface Props {
   data: SiteForm
@@ -47,9 +46,6 @@ const datas = [
 
 const Id: FC<Props> = ({ data, site, sites }) => {
   const { query } = useRouter()
-  // const { data, isValidating, error } = useSWR(SITES)
-  // console.log(query);
-
   return (
     <Layout
       title='Dashboard'
@@ -68,7 +64,8 @@ const Id: FC<Props> = ({ data, site, sites }) => {
         }
         <HeadingForm title="Site" />
         <FormSite data={data} />
-
+        {/* <FormSite2 data={data} /> */}
+        {/* <SiteF /> */}
       </Dashboard>
     </Layout>
   )
